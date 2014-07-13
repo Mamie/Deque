@@ -1,5 +1,11 @@
 Deque
 =====
+### assignment requirement
+> http://coursera.cs.princeton.edu/algs4/assignments/collinear.html
+
+### checklist
+> http://coursera.cs.princeton.edu/algs4/checklists/collinear.html
+
 Randomized queue
 --------------------
     public class RandomizedQueue<Item> implements Iterable<Item> {   
