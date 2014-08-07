@@ -1,39 +1,53 @@
 import java.util.Iterator;
 
+/**
+* @author Mamie
+* Implementation of double-ended queue using doubly linked list
+* @see http://coursera.cs.princeton.edu/algs4/assignments/queues.html
+*/
+
 public class Deque<Item> implements Iterable<Item> {
     private int N;              // size
-    private Node first;        
+    private Node first;
     private Node last;
-    
-    // inner class to define Node
+
+/**
+* inner class to define Node
+*/
     private class Node {
         private Item item;
         private Node next;
         private Node prev;
     }
-    
+
     // initialize an empty deque
     public Deque() {
         first = null;
         last = null;
         N = 0;
     }
-    
-    // the size of deque
+
+/**
+* @return the size of deque
+*/
     public int size() {
         return N;
     }
-    
-    // whether the deque is empty
+
+/**
+* @return true if the deque is empty else false
+*/
     public boolean isEmpty() {
         return N == 0;
     }
-    
-    // add elements to the front of the deque
+
+/**
+* add elements to the front of the deque
+*/
     public void addFirst(Item item) {
-        if (item == null) 
+        if (item == null)
             throw new NullPointerException("cannot add null item.");
-        Node oldfirst = first; 
+        Node oldfirst = first;
         first = new Node();
         first.item = item;
         first.prev = null;
@@ -51,11 +65,13 @@ public class Deque<Item> implements Iterable<Item> {
         }
         N++;
     }
-    
-    
-    // add elements to the end of the deque
+
+
+/**
+* add elements to the end of the deque
+*/
     public void addLast(Item item) {
-        if (item == null) 
+        if (item == null)
             throw new NullPointerException("cannot add null item.");
         Node oldlast = last;
         last = new Node();
@@ -75,10 +91,12 @@ public class Deque<Item> implements Iterable<Item> {
         }
         N++;
     }
-    
-    // remove elements from the front of the deque
+
+/**
+* remove elements from the front of the deque
+*/
     public Item removeFirst() {
-        if (isEmpty()) 
+        if (isEmpty())
         throw new java.util.NoSuchElementException("empty deque.");
         Item item = first.item;
         if (N == 1) {
@@ -92,10 +110,12 @@ public class Deque<Item> implements Iterable<Item> {
         N--;
         return item;
     }
-    
-    // return elements from the end of the deque
+
+/**
+* @return elements from the end of the deque
+*/
     public Item removeLast() {
-        if (isEmpty()) 
+        if (isEmpty())
             throw new java.util.NoSuchElementException("empty deque.");
         Item item = last.item;
         if (N == 1) {
@@ -109,13 +129,17 @@ public class Deque<Item> implements Iterable<Item> {
         N--;
         return item;
     }
-    
-    // iterator
+
+/**
+* @return an iterator of the queue
+*/
     public Iterator<Item> iterator() {
         return new ListIterator();
     }
-    
-    // ListIterator class
+
+/**
+* ListIterator class
+*/
     private class ListIterator implements Iterator<Item> {
         private Node current = first;
         public boolean hasNext() {
@@ -125,14 +149,17 @@ public class Deque<Item> implements Iterable<Item> {
             throw new UnsupportedOperationException("remove() is not supported.");
         }
         public Item next() {
-            if (!hasNext()) 
+            if (!hasNext())
                 throw new java.util.NoSuchElementException("no more element to return.");
             Item item = current.item;
             current = current.next;
             return item;
         }
     }
-    
+
+/**
+* modular testing
+*/
     public static void main(String[] args) {
         Deque<String> d = new Deque<String>();
         d.addFirst(args[0]);
@@ -140,24 +167,23 @@ public class Deque<Item> implements Iterable<Item> {
         d.addFirst(args[2]);
         for (String s : d) {
             StdOut.println(s);
-            
-        /*while (!StdIn.isEmpty()) {
+
+        while (!StdIn.isEmpty()) {
             String item = StdIn.readString();
-            if (!item.equals("-") && !item.equals("+")) 
+            if (!item.equals("-") && !item.equals("+"))
                 d.addFirst(item);
-            else if (item.equals("-") && !d.isEmpty()) 
+            else if (item.equals("-") && !d.isEmpty())
                 StdOut.print(d.removeFirst() + " ");
-            else if (item.equals("+") && !d.isEmpty()) 
+            else if (item.equals("+") && !d.isEmpty())
                 StdOut.print(d.removeLast() + " ");
-        }*/
-        /*StdOut.println("(" + d.size() + " left on deque.)");*/
+        }
+        StdOut.println("(" + d.size() + " left on deque.)");
     }
-       
+
     }
 }
 
-          
-       
-       
-        
-    
+
+
+
+
