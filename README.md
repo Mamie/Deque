@@ -3,11 +3,11 @@ Randomized queue and deque
 
 Summary
 ---------
-Use linked list to implement elementary data structure: randomized queue and deque.
+Use resizable array and linked list to implement two elementary data structure respectively: randomized queue and deque.
 
 Randomized queue
 --------------------
-Implementation of a queue that allows for uniformly random removal of items in the data structure. API is as follows:
+Implementation of a queue that allows for uniformly random removal of items in the data structure based on resizable array. API is as follows:
 
     public class RandomizedQueue<Item> implements Iterable<Item> {
     public RandomizedQueue()                 // construct an empty randomized queue
